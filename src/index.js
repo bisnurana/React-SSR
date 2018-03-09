@@ -1,14 +1,15 @@
-const express = require('express');
-const React = require('react');
-const { renderToString } = require('react-dom/server');
-const Home = require('./client/components/Home').default;
+import 'babel-polyfill';
+import express from 'express';
+import renderer from './helpers/renderer';
+import createStore from './helpers/createStore';
 
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
-app.get('/', (req, res) => {
-  const content = renderToString(<Home />);
-  res.send(content);
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+  const store = createStore();
+  res.send(renderer(req, store));
 });
 
-app.listen(PORT, () => { console.log(`Server running at port${PORT}`); });
+app.listen(PORT, () => { console.log(`Server running at port ${PORT}`); });

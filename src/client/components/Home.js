@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Home = () => (
-  <div>Home Component</div>
+  <div>
+    <div>Home Component</div>
+    <button onClick={() => console.log('Button clicked')}>Click</button>
+  </div>
 );
 export default Home;
