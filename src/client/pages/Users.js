@@ -5,8 +5,9 @@ import { fetchUsers } from '../actions';
 
 class Users extends Component {
   componentDidMount() {
-    const { users, fetchUsers } = this.props;
-    !users && fetchUsers();
+    /* const { users, fetchUsers } = this.props;
+    !users && fetchUsers(); */
+    this.props.fetchUsers();
   }
   renderUsers() {
     return this.props.users.map(user => (<li key={user.id}>{user.name}</li>));
